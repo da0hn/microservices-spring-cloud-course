@@ -1,0 +1,14 @@
+{
+  "properties": [
+    {
+      "name": "greeting-service.default-value",
+      "type": "java.lang.String",
+      "description": "Description for greeting-service.default-value."
+    },
+    {
+      "name": "greeting-service.greeting",
+      "type": "java.lang.String",
+      "description": "Description for greeting-service.greeting."
+    }
+  ]
+}
