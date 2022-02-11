@@ -1,0 +1,40 @@
+version: '3.8'
+services:
+  cambio-db:
+    image: mariadb:latest
+    container_name: cambio_db
+    ports:
+      - '3306:3306'
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: cambio_db
+      MYSQL_USER: cambio_db
+      MYSQL_PASSWORD: cambio_db
+    volumes:
+      - .docker/cambio_db:/var/lib/mysql
+    restart: on-failure
+    expose:
+      - '3306'
+    networks:
+      - microservice-network
+  book-db:
+    image: mariadb:latest
+    container_name: book_db
+    ports:
+      - '3307:3306'
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: book_db
+      MYSQL_USER: book_db
+      MYSQL_PASSWORD: book_db
+    volumes:
+      - .docker/book_db:/var/lib/mysql
+    restart: on-failure
+    expose:
+      - '3307'
+    networks:
+      - microservice-network
+networks:
+  microservice-network:
+    driver: bridge
+    name: microservice-network

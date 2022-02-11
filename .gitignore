@@ -146,9 +146,5 @@ gradle-app.setting
 
 # Cache of project
 .gradletasknamecache
-
-# Eclipse Gradle plugin generated files
-# Eclipse Core
-# JDT-specific (Eclipse Java Development Tools)
-
-# End of https://www.toptal.com/developers/gitignore/api/maven,gradle,java,intellij+all
+.docker/cambio_db/*
+.docker/book_db/*
