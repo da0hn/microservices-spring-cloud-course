@@ -1,7 +1,7 @@
-package org.da0hn.cambio;
+package org.da0hn.cambio.application;
 
 import lombok.AllArgsConstructor;
-import org.springframework.core.env.Environment;
+import org.da0hn.cambio.core.usecases.CambioConverter;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -14,23 +14,19 @@ import java.math.BigDecimal;
 @RequestMapping("/cambio-service")
 public class CambioController {
 
-  private final Environment environment;
+  private final CambioConverter cambioConverter;
 
   @GetMapping
-  public Cambio convertMoney(
+  public CambioResponse convertMoney(
     @RequestParam("amount") final BigDecimal amount,
     @RequestParam("from") final String from,
     @RequestParam("to") final String to
   ) {
-    final var port = environment.getProperty("local.server.port");
-    return new Cambio(
-      1L,
+    return this.cambioConverter.execute(new CambioRequest(
+      amount,
       from,
-      to,
-      BigDecimal.ONE,
-      BigDecimal.ONE,
-      port
-    );
+      to
+    ));
   }
 
 }
