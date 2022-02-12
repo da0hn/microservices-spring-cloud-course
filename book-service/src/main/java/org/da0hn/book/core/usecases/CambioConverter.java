@@ -1,4 +1,4 @@
-package org.da0hn.book.data.web;
+package org.da0hn.book.core.usecases;
 
 public interface CambioConverter {
 

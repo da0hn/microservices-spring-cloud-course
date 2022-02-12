@@ -1,4 +1,4 @@
-package org.da0hn.book.application;
+package org.da0hn.book.core.usecases;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;

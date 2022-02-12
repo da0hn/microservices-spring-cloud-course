@@ -1,6 +1,8 @@
 package org.da0hn.book.application;
 
 import lombok.AllArgsConstructor;
+import org.da0hn.book.core.usecases.BookQuery;
+import org.da0hn.book.core.usecases.BookResponse;
 import org.da0hn.book.core.usecases.GetBookById;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;

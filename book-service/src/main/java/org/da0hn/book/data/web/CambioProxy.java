@@ -1,5 +1,6 @@
 package org.da0hn.book.data.web;
 
+import org.da0hn.book.core.usecases.CambioResponse;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;

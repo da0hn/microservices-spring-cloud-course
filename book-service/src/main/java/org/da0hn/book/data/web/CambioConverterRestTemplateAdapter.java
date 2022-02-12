@@ -1,6 +1,9 @@
 package org.da0hn.book.data.web;
 
 import lombok.AllArgsConstructor;
+import org.da0hn.book.core.usecases.CambioConverter;
+import org.da0hn.book.core.usecases.CambioRequest;
+import org.da0hn.book.core.usecases.CambioResponse;
 import org.springframework.core.env.Environment;
 import org.springframework.stereotype.Component;
 import org.springframework.web.client.RestTemplate;
