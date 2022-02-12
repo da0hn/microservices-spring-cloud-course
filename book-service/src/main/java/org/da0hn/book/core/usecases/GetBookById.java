@@ -21,7 +21,7 @@ public class GetBookById {
   private static final String DEFAULT_CURRENCY = "USD";
   private final Environment environment;
   private final JpaBookRepository repository;
-  @Resource(name = "restTemplateCambioConverter")
+  @Resource(name = "cambioConverterFeignAdapter")
   private final CambioConverter cambioConverter;
 
   public BookResponse execute(final BookQuery query) {

@@ -7,7 +7,7 @@ import org.springframework.web.client.RestTemplate;
 
 @Component
 @AllArgsConstructor
-public class RestTemplateCambioConverter implements CambioConverter {
+public class CambioConverterRestTemplateAdapter implements CambioConverter {
 
   private final Environment environment;
 
