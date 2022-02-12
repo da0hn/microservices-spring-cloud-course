@@ -23,3 +23,7 @@ spring:
     schemas: book_db
     user: book_db
     password: book_db
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:8761/eureka
