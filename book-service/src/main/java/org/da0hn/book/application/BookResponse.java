@@ -1,4 +1,4 @@
-package org.da0hn.book;
+package org.da0hn.book.application;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
