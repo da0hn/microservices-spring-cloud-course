@@ -1,3 +1,5 @@
+cambio-service:
+  url: http://localhost:8000
 server:
   port: 8100
 spring:

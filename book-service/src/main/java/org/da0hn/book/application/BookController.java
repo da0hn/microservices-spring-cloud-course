@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("/books")
+@RequestMapping("/book-service")
 @AllArgsConstructor
 public class BookController {
 
