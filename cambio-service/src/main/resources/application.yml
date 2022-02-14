@@ -23,4 +23,5 @@ spring:
     password: cambio_db
 eureka:
   client:
-    service-url: http://localhost:8761/eureka
+    service-url:
+      defaultZone: http://localhost:8761/eureka
