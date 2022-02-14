@@ -44,7 +44,11 @@ public class GetBookById {
       cambioResponse.convertedValue(),
       book.getTitle(),
       query.currency(),
-      port
+      String.format(
+        "book-service port: %s - cambio-service port: %s",
+        port,
+        cambioResponse.environment()
+      )
     );
   }
 
