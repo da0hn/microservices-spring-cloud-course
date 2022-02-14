@@ -4,6 +4,8 @@ import lombok.AllArgsConstructor;
 import org.da0hn.book.core.domain.BookEntity;
 import org.da0hn.book.core.domain.BookNotFoundException;
 import org.da0hn.book.data.db.JpaBookRepository;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.core.env.Environment;
 import org.springframework.stereotype.Component;
 
@@ -15,6 +17,7 @@ public class GetBookById {
 
   private static final String PORT = "local.server.port";
   private static final String DEFAULT_CURRENCY = "USD";
+  private static final Logger LOGGER = LoggerFactory.getLogger(GetBookById.class);
   private final Environment environment;
   private final JpaBookRepository repository;
   @Resource(name = "cambioConverterFeignAdapter")
@@ -31,6 +34,8 @@ public class GetBookById {
       DEFAULT_CURRENCY,
       query.currency()
     ));
+
+    LOGGER.info("Book Port: {} - Cambio Port: {}", port, cambioResponse.environment());
 
     return new BookResponse(
       book.getId(),
