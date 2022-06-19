@@ -1,0 +1,28 @@
+package org.da0hn.book.application;
+
+import io.github.resilience4j.retry.annotation.Retry;
+import lombok.AllArgsConstructor;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.client.RestTemplate;
+
+
+@RestController
+@RequestMapping("/book-service")
+@AllArgsConstructor
+public class FooBarController {
+
+  private static final Logger LOGGER = LoggerFactory.getLogger(FooBarController.class);
+
+  @GetMapping("foo-bar")
+  @Retry(name = "foo-bar")
+  public String getBookById() {
+    LOGGER.info("Request to foo-bar is received");
+    new RestTemplate().getForEntity("http://localhost:8080/foo-bar", String.class);
+    return "Foo-Bar";
+  }
+
+}
