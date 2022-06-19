@@ -18,11 +18,15 @@ public class FooBarController {
   private static final Logger LOGGER = LoggerFactory.getLogger(FooBarController.class);
 
   @GetMapping("foo-bar")
-  @Retry(name = "foo-bar")
+  @Retry(name = "foo-bar", fallbackMethod = "fallbackMethod")
   public String getBookById() {
     LOGGER.info("Request to foo-bar is received");
-    new RestTemplate().getForEntity("http://localhost:8080/foo-bar", String.class);
-    return "Foo-Bar";
+    final var response = new RestTemplate().getForEntity("http://localhost:8080/foo-bar", String.class);
+    return response.getBody();
+  }
+
+  public String fallbackMethod(final Exception exception) {
+    return "fallback method foo-bar";
   }
 
 }
