@@ -3,6 +3,9 @@ server:
 spring:
   application:
     name: api-gateway
+  sleuth:
+    sampler:
+      probability: 1.0 # Trace 100% of logs
   cloud:
     gateway:
       discovery:

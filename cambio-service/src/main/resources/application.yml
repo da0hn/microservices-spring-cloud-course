@@ -21,6 +21,9 @@ spring:
     schemas: cambio_db
     user: cambio_db
     password: cambio_db
+  sleuth:
+    sampler:
+      probability: 1.0 # Trace 100% of logs
 eureka:
   client:
     service-url:
