@@ -1,6 +1,6 @@
 package org.da0hn.book.application;
 
-import io.github.resilience4j.retry.annotation.Retry;
+import io.github.resilience4j.circuitbreaker.annotation.CircuitBreaker;
 import lombok.AllArgsConstructor;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -18,7 +18,8 @@ public class FooBarController {
   private static final Logger LOGGER = LoggerFactory.getLogger(FooBarController.class);
 
   @GetMapping("foo-bar")
-  @Retry(name = "foo-bar", fallbackMethod = "fallbackMethod")
+  @CircuitBreaker(name = "default", fallbackMethod = "fallbackMethod")
+  //  @Retry(name = "foo-bar", fallbackMethod = "fallbackMethod")
   public String getBookById() {
     LOGGER.info("Request to foo-bar is received");
     final var response = new RestTemplate().getForEntity("http://localhost:8080/foo-bar", String.class);
