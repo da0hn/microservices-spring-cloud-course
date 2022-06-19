@@ -1,10 +1,10 @@
-package org.da0hn.serviceregistry;
+package org.da0hn.namingserver;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class ServiceRegistryApplicationTests {
+class NamingServerApplicationTests {
 
   @Test
   void contextLoads() {
