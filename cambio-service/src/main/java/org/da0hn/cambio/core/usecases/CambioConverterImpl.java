@@ -3,9 +3,11 @@ package org.da0hn.cambio.core.usecases;
 import lombok.AllArgsConstructor;
 import org.da0hn.cambio.application.CambioRequest;
 import org.da0hn.cambio.application.CambioResponse;
-import org.da0hn.cambio.data.db.JpaCambioRepository;
 import org.da0hn.cambio.core.domain.CambioEntity;
 import org.da0hn.cambio.core.domain.CambioNotfoundException;
+import org.da0hn.cambio.data.db.JpaCambioRepository;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.core.env.Environment;
 import org.springframework.stereotype.Component;
 
@@ -14,11 +16,14 @@ import org.springframework.stereotype.Component;
 public class CambioConverterImpl implements CambioConverter {
 
   private static final String PORT = "local.server.port";
+  private static final Logger LOGGER = LoggerFactory.getLogger(CambioConverterImpl.class);
   private final JpaCambioRepository repository;
   private final Environment environment;
 
   @Override public CambioResponse execute(final CambioRequest request) {
+    LOGGER.info("Searching by CambioEntity using from={} & to={}", request.from(), request.to());
     final var entity = this.findCambio(request);
+    LOGGER.info("CambioEntity found: {}", entity);
     return this.buildResponse(request, entity);
   }
 

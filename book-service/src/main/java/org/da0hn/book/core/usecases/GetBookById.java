@@ -29,11 +29,26 @@ public class GetBookById {
 
     final var price = book.getPrice();
 
+    LOGGER.info(
+      "Calling GET /cambio-service?amount={}&from={}&to={}",
+      price,
+      DEFAULT_CURRENCY,
+      query.currency()
+    );
+
     final var cambioResponse = this.cambioConverter.convert(new CambioRequest(
       price,
       DEFAULT_CURRENCY,
       query.currency()
     ));
+
+    LOGGER.info(
+      "Response GET /cambio-service?amount={}&from={}&to={} | {}",
+      price,
+      DEFAULT_CURRENCY,
+      query.currency(),
+      cambioResponse
+    );
 
     LOGGER.info("Book Port: {} - Cambio Port: {}", port, cambioResponse.environment());
 

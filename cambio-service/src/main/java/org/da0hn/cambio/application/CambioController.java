@@ -4,6 +4,8 @@ import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.AllArgsConstructor;
 import org.da0hn.cambio.core.usecases.CambioConverter;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -17,6 +19,7 @@ import java.math.BigDecimal;
 @Tag(name = "Cambio endpoint")
 public class CambioController {
 
+  private static final Logger LOGGER = LoggerFactory.getLogger(CambioController.class);
   private final CambioConverter cambioConverter;
 
   @GetMapping
@@ -26,11 +29,14 @@ public class CambioController {
     @RequestParam("from") final String from,
     @RequestParam("to") final String to
   ) {
-    return this.cambioConverter.execute(new CambioRequest(
+    LOGGER.info("GET /cambio-service?amount={}&from={}&to={}", amount, from, to);
+    final var response = this.cambioConverter.execute(new CambioRequest(
       amount,
       from,
       to
     ));
+    LOGGER.info("Response: {}", response);
+    return response;
   }
 
 }
