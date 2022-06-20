@@ -1,15 +1,15 @@
 cambio-service:
-  url: http://localhost:8000
+  url: http://${CAMBIO_URL:localhost}:${CAMBIO_PORT:8000}
 server:
-  port: 8100
+  port: ${PORT:8100}
 spring:
   application:
     name: book-service
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://localhost:3307/book_db?useTimezone=true&serverTimezone=UTC
-    username: book_db
-    password: book_db
+    url: jdbc:mysql://${DATABASE_URL:localhost}:${PORT:3307}/${DATABASE:book_db}?serverTimezone=UTC&useTimezone=true
+    username: ${DATABASE_USER:book_db}
+    password: ${DATABASE_PASSWORD:book_db}
   jpa:
     hibernate:
       ddl-auto: update
@@ -17,21 +17,20 @@ spring:
     properties:
       hibernate:
         format_sql: true
-        dialect: org.hibernate.dialect.MySQL5InnoDBDialect
+        dialect: org.hibernate.dialect.MySQL8Dialect
   flyway:
-    url: jdbc:mysql://localhost:3307
-    schemas: book_db
-    user: book_db
-    password: book_db
+    url: jdbc:mysql://${DATABASE_URL:localhost}:${PORT:3307}/${DATABASE:book_db}?serverTimezone=UTC&useTimezone=true
+    user: ${DATABASE_USER:book_db}
+    password: ${DATABASE_PASSWORD:book_db}
   sleuth:
     sampler:
       probability: 1.0 # Trace 100% of logs
   zipkin:
-    base-url: http://localhost:9411/
+    base-url: http://${ZIPKIN_URL:localhost}:${ZIPKIN_PORT:9411}/
 eureka:
   client:
     service-url:
-      defaultZone: http://localhost:8761/eureka
+      defaultZone: http://${EUREKA_URL:localhost}:${EUREKA_PORT:8761}/eureka
 resilience4j:
   ratelimiter:
     instances:
