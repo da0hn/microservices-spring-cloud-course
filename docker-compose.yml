@@ -59,6 +59,7 @@ services:
       - EUREKA_PORT=8761
     depends_on:
       - naming-server
+      - zipkin
     networks:
       - microservice-network
 networks:
