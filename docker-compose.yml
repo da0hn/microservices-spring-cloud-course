@@ -32,6 +32,13 @@ services:
     restart: on-failure
     networks:
       - microservice-network
+  zipkin:
+    image: openzipkin/zipkin:2.23.2
+    container_name: zipkin
+    ports:
+      - '9411:9411'
+    networks:
+      - microservice-network
   naming-server:
     image: da0hn/naming-server:1.0.0
     container_name: naming-server
