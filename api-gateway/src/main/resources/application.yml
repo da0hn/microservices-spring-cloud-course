@@ -1,5 +1,5 @@
 server:
-  port: 8765
+  port: ${PORT:8765}
 spring:
   application:
     name: api-gateway
@@ -7,7 +7,7 @@ spring:
     sampler:
       probability: 1.0 # Trace 100% of logs
   zipkin:
-    base-url: http://localhost:9411/
+    base-url: http://${ZIPKIN_URL:localhost}:${ZIPKIN_PORT:9411}/
   cloud:
     gateway:
       discovery:
@@ -31,5 +31,5 @@ spring:
 eureka:
   client:
     service-url:
-      defaultZone: http://localhost:8761/eureka
+      defaultZone: http://${EUREKA_URL:localhost}:${EUREKA_PORT:8761}/eureka
 

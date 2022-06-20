@@ -48,6 +48,19 @@ services:
       - '8761:8761'
     networks:
       - microservice-network
+  api-gateway:
+    image: da0hn/api-gateway:1.0.0
+    container_name: api-gateway
+    environment:
+      - PORT=8765
+      - ZIPKIN_URL=zipkin
+      - ZIPKIN_PORT=9411
+      - EUREKA_URL=naming-server
+      - EUREKA_PORT=8761
+    depends_on:
+      - naming-server
+    networks:
+      - microservice-network
 networks:
   microservice-network:
     driver: bridge
