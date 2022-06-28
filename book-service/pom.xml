@@ -10,12 +10,13 @@
     </parent>
     <groupId>org.da0hn</groupId>
     <artifactId>book-service</artifactId>
-    <version>1.0.7</version>
+    <version>1.0.35</version>
     <name>book-service</name>
     <description>book-service</description>
     <properties>
         <java.version>17</java.version>
         <spring-cloud.version>2021.0.0</spring-cloud.version>
+        <flyway.version>8.5.12</flyway.version>
     </properties>
     <dependencies>
         <dependency>
@@ -33,12 +34,12 @@
         <dependency>
             <groupId>org.flywaydb</groupId>
             <artifactId>flyway-core</artifactId>
-            <version>8.5.12</version>
+            <version>${flyway.version}</version>
         </dependency>
         <dependency>
             <groupId>org.flywaydb</groupId>
             <artifactId>flyway-mysql</artifactId>
-            <version>8.5.12</version>
+            <version>${flyway.version}</version>
         </dependency>
         <dependency>
             <groupId>org.springdoc</groupId>
@@ -70,10 +71,10 @@
             <groupId>org.springframework.cloud</groupId>
             <artifactId>spring-cloud-starter-sleuth</artifactId>
         </dependency>
-        <dependency>
-            <groupId>org.springframework.amqp</groupId>
-            <artifactId>spring-rabbit</artifactId>
-        </dependency>
+<!--        <dependency>-->
+<!--            <groupId>org.springframework.amqp</groupId>-->
+<!--            <artifactId>spring-rabbit</artifactId>-->
+<!--        </dependency>-->
 
         <!--        <dependency>-->
         <!--            <groupId>org.springframework.cloud</groupId>-->

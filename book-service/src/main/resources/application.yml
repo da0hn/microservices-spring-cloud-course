@@ -7,9 +7,9 @@ spring:
     name: book-service
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://${DATABASE_URL:localhost}:${PORT:3307}/${DATABASE:book_db}?serverTimezone=UTC&useTimezone=true
-    username: ${DATABASE_USER:book_db}
-    password: ${DATABASE_PASSWORD:book_db}
+    url: jdbc:mysql://${DATABASE_URL:localhost}:${DATABASE_PORT:3310}/${DATABASE:book_db}?autoReconnect=true&useSSL=false&serverTimezone=UTC&enabledTLSProtocols=TLSv1.2
+    username: ${DATABASE_USER:root}
+    password: ${DATABASE_PASSWORD:admin123}
   jpa:
     hibernate:
       ddl-auto: update
@@ -19,9 +19,9 @@ spring:
         format_sql: true
         dialect: org.hibernate.dialect.MySQL8Dialect
   flyway:
-    url: jdbc:mysql://${DATABASE_URL:localhost}:${PORT:3307}/${DATABASE:book_db}?serverTimezone=UTC&useTimezone=true
-    user: ${DATABASE_USER:book_db}
-    password: ${DATABASE_PASSWORD:book_db}
+    url: jdbc:mysql://${DATABASE_URL:localhost}:${DATABASE_PORT:3310}/${DATABASE:book_db}?autoReconnect=true&useSSL=false&serverTimezone=UTC&enabledTLSProtocols=TLSv1.2
+    user: ${DATABASE_USER:root}
+    password: ${DATABASE_PASSWORD:admin123}
   sleuth:
     sampler:
       probability: 1.0 # Trace 100% of logs
@@ -51,3 +51,7 @@ springdoc:
   show-actuator: true
   api-docs:
     path: book-service/v3/api-docs
+logging:
+  level:
+    org:
+      flywaydb=debug:
