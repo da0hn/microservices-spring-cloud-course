@@ -114,11 +114,17 @@ services:
         - PORT=8100
         - ZIPKIN_URL=zipkin-server
         - ZIPKIN_PORT=9411
+        - ZIPKIN_SENDER_TYPE=rabbit
         - EUREKA_URL=naming-server
         - EUREKA_PORT=8761
+        - RABBITMQ_HOST=rabbit-mq
+        - RABBITMQ_USER=guest
+        - RABBITMQ_PASSWORD=guest
+        - RABBITMQ_PORT=5672
     depends_on:
       - naming-server
       - book-db
+      - rabbit-mq
     networks:
       - microservice-network
   cambio-service:
