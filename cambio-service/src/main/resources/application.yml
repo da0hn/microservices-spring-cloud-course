@@ -1,13 +1,13 @@
 server:
-  port: 8000
+  port: ${PORT:8000}
 spring:
   application:
     name: cambio-service
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://localhost:3306/cambio_db?useTimezone=true&serverTimezone=UTC
-    username: cambio_db
-    password: cambio_db
+    url: jdbc:mysql://${DATABASE_URL:localhost}:${DATABASE_PORT:3311}/${DATABASE:cambio_db}?autoReconnect=true&useSSL=false&serverTimezone=UTC&enabledTLSProtocols=TLSv1.2
+    username: ${DATABASE_USER:root}
+    password: ${DATABASE_PASSWORD:admin123}
   jpa:
     hibernate:
       ddl-auto: update
@@ -15,21 +15,20 @@ spring:
     properties:
       hibernate:
         format_sql: true
-        dialect: org.hibernate.dialect.MySQL5InnoDBDialect
+        dialect: org.hibernate.dialect.MySQL8Dialect
   flyway:
-    url: jdbc:mysql://localhost:3306
-    schemas: cambio_db
-    user: cambio_db
-    password: cambio_db
+    url: jdbc:mysql://${DATABASE_URL:localhost}:${DATABASE_PORT:3311}/${DATABASE:cambio_db}?autoReconnect=true&useSSL=false&serverTimezone=UTC&enabledTLSProtocols=TLSv1.2
+    user: ${DATABASE_USER:root}
+    password: ${DATABASE_PASSWORD:admin123}
   sleuth:
     sampler:
       probability: 1.0 # Trace 100% of logs
   zipkin:
-    base-url: http://localhost:9411/
+    base-url: http://${ZIPKIN_URL:localhost}:${ZIPKIN_PORT:9411}/
 eureka:
   client:
     service-url:
-      defaultZone: http://localhost:8761/eureka
+      defaultZone: http://${EUREKA_URL:localhost}:${EUREKA_PORT:8761}/eureka
 springdoc:
   show-actuator: true
   api-docs:

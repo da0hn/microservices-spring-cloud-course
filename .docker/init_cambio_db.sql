@@ -1,1 +1,1 @@
-create database cambio_db;
+create database if not exists cambio_db;
