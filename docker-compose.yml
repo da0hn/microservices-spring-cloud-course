@@ -78,23 +78,29 @@ services:
     networks:
       - microservice-network
   api-gateway:
-    image: da0hn/api-gateway:1.0.0
+    image: da0hn/api-gateway:1.1.0
     container_name: api-gateway
     environment:
       - PORT=8765
       - ZIPKIN_URL=zipkin-server
       - ZIPKIN_PORT=9411
+      - ZIPKIN_SENDER_TYPE=rabbit
       - EUREKA_URL=naming-server
       - EUREKA_PORT=8761
+      - RABBITMQ_HOST=rabbit-mq
+      - RABBITMQ_USER=guest
+      - RABBITMQ_PASSWORD=guest
+      - RABBITMQ_PORT=5672
     ports:
       - '8765:8765'
     depends_on:
       - naming-server
       - zipkin-server
+      - rabbit-mq
     networks:
       - microservice-network
   book-service:
-    image: da0hn/book-service:latest
+    image: da0hn/book-service:1.1.0
     container_name: book-service
     build:
       context: ./book-service
@@ -102,9 +108,6 @@ services:
     ports:
       - '8100:8100'
     environment:
-#      RABBIT_URI: amqp://guest:guest@rabbit-mq:5672
-#      SPRING_RABBITMQ_HOST: rabbit-mq
-#      SPRING_ZIPKIN_SENDER_TYPE: rabbit
         - TZ=America/Cuiaba
         - DATABASE_URL=book-db
         - DATABASE_PORT=3306
@@ -136,9 +139,6 @@ services:
     ports:
       - '8000:8000'
     environment:
-      #      RABBIT_URI: amqp://guest:guest@rabbit-mq:5672
-      #      SPRING_RABBITMQ_HOST: rabbit-mq
-      #      SPRING_ZIPKIN_SENDER_TYPE: rabbit
       - TZ=America/Cuiaba
       - DATABASE_URL=cambio-db
       - DATABASE_PORT=3306
@@ -148,11 +148,17 @@ services:
       - PORT=8000
       - ZIPKIN_URL=zipkin-server
       - ZIPKIN_PORT=9411
+        - ZIPKIN_SENDER_TYPE=rabbit
       - EUREKA_URL=naming-server
       - EUREKA_PORT=8761
+      - RABBITMQ_HOST=rabbit-mq
+      - RABBITMQ_USER=guest
+      - RABBITMQ_PASSWORD=guest
+      - RABBITMQ_PORT=5672
     depends_on:
       - naming-server
       - cambio-db
+      - rabbit-mq
     networks:
       - microservice-network
 networks:
