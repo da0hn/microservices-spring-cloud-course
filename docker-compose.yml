@@ -131,7 +131,7 @@ services:
     networks:
       - microservice-network
   cambio-service:
-    image: da0hn/cambio-service:latest
+    image: da0hn/cambio-service:1.1.0
     container_name: cambio-service
     build:
       context: ./cambio-service
@@ -148,7 +148,7 @@ services:
       - PORT=8000
       - ZIPKIN_URL=zipkin-server
       - ZIPKIN_PORT=9411
-        - ZIPKIN_SENDER_TYPE=rabbit
+      - ZIPKIN_SENDER_TYPE=rabbit
       - EUREKA_URL=naming-server
       - EUREKA_PORT=8761
       - RABBITMQ_HOST=rabbit-mq

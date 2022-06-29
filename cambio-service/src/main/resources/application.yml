@@ -25,6 +25,13 @@ spring:
       probability: 1.0 # Trace 100% of logs
   zipkin:
     base-url: http://${ZIPKIN_URL:localhost}:${ZIPKIN_PORT:9411}/
+    sender:
+      type: ${ZIPKIN_SENDER_TYPE:rabbit}
+  rabbitmq:
+    host: ${RABBITMQ_HOST:localhost}
+    password: ${RABBITMQ_PASSWORD:guest}
+    username: ${RABBITMQ_USER:guest}
+    port: ${RABBITMQ_PORT:5672}
 eureka:
   client:
     service-url:
