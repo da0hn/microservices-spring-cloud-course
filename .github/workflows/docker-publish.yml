@@ -30,7 +30,7 @@ jobs:
         uses: actions/setup-java@v3.4.0
         with:
           java-version: '17'
-          distribuition: 'adopt'
+          distribuition: 'temurin'
 
       - name: Build Eureka Naming Server Container Image
         working-directory: ./naming-server
