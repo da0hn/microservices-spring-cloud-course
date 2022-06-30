@@ -55,10 +55,10 @@ jobs:
       - name: Push to Docker Hub
         working-directory: ./
         run: |
-          docker tag ${{ secrets.DOCKER_USERNAME }}/naming-server:1.0.0 ${{ secrets.DOCKER_USERNAME }}/naming-server:${{ github.run_id }}
-          docker tag ${{ secrets.DOCKER_USERNAME }}/api-gateway:1.1.0 ${{ secrets.DOCKER_USERNAME }}/api-gateway:${{ github.run_id }}
-          docker tag ${{ secrets.DOCKER_USERNAME }}/book-service:latest ${{ secrets.DOCKER_USERNAME }}/book-service:${{ github.run_id }}
-          docker tag ${{ secrets.DOCKER_USERNAME }}/cambio-service:latest ${{ secrets.DOCKER_USERNAME }}/cambio-service:${{ github.run_id }}
+          docker tag ${{ secrets.DOCKER_USERNAME }}/naming-server ${{ secrets.DOCKER_USERNAME }}/naming-server:${{ github.run_id }}
+          docker tag ${{ secrets.DOCKER_USERNAME }}/api-gateway ${{ secrets.DOCKER_USERNAME }}/api-gateway:${{ github.run_id }}
+          docker tag ${{ secrets.DOCKER_USERNAME }}/book-service ${{ secrets.DOCKER_USERNAME }}/book-service:${{ github.run_id }}
+          docker tag ${{ secrets.DOCKER_USERNAME }}/cambio-service ${{ secrets.DOCKER_USERNAME }}/cambio-service:${{ github.run_id }}
           docker push ${{ secrets.DOCKER_USERNAME }}/naming-server:${{ github.run_id }}
           docker push ${{ secrets.DOCKER_USERNAME }}/api-gateway:${{ github.run_id }}
           docker push ${{ secrets.DOCKER_USERNAME }}/book-service:${{ github.run_id }}
